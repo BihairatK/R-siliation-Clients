@@ -74,10 +74,8 @@ Les trois modèles obtiennent des performances proches (ROC-AUC ~0.71–0.72), s
 
 - **Rééquilibrage de la classe minoritaire** (SMOTE, undersampling) pour comparer avec l'approche `class_weight`/`scale_pos_weight` actuelle.
 - **Feature engineering** : croisement ancienneté × canal, création d'un score composite d'insatisfaction, historique de hausses de prime cumulées.
-- **Calibration des probabilités** (Platt scaling / isotonic regression) pour un scoring exploitable directement en seuils métier.
 - **Analyse coût-bénéfice** : définir un seuil de décision optimal en fonction du coût réel d'une action de rétention vs. le coût de la perte d'un client.
-- **Test d'un modèle de survie** (Cox, Kaplan-Meier) pour modéliser non seulement *si* mais *quand* un client résilie.
-- **Mise en production** : packaging du pipeline (préprocessing + modèle) via `joblib`/`MLflow`, et suivi de la dérive du modèle dans le temps (data drift, performance drift).
+
 
 ---
 
