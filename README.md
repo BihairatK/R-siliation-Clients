@@ -35,9 +35,9 @@ Le projet suit un pipeline classique de Data Science, structuré en 6 étapes :
 3. **Analyse exploratoire (EDA)** : distribution de la cible, taux de résiliation par segment (garantie, canal de souscription, mode de paiement), effet de la hausse de prime, effet de l'ancienneté, matrice de corrélation.
 4. **Préprocessing** : séparation train/test (80/20, stratifiée), encodage One-Hot des variables catégorielles, sans standardisation des variables numériques afin de préserver l'interprétabilité directe des coefficients et des valeurs SHAP.
 5. **Modélisation** : entraînement et optimisation (RandomizedSearchCV, validation croisée stratifiée à 5 plis, métrique ROC-AUC) de trois modèles complémentaires :
-   - **Régression logistique** (`class_weight="balanced"`) — modèle de référence, interprétable ;
+   - **Régression logistique** (`class_weight="balanced"`) : modèle de référence, interprétable ;
    - **Random Forest** (`class_weight="balanced"`) ;
-   - **XGBoost** (`scale_pos_weight`) — pour capter les interactions non linéaires.
+   - **XGBoost** (`scale_pos_weight`) : pour capter les interactions non linéaires.
 6. **Interprétation** : comparaison des performances (ROC-AUC, F1, précision, rappel), importance des variables (coefficients / feature importances), puis analyse **SHAP** (valeurs globales et locales) pour comprendre le sens et l'intensité de l'effet de chaque variable, y compris sur le modèle non linéaire (XGBoost).
 
 ## 4. Résultats et insights
@@ -75,8 +75,3 @@ Les trois modèles obtiennent des performances proches (ROC-AUC ~0.71–0.72), s
 - **Rééquilibrage de la classe minoritaire** (SMOTE, undersampling) pour comparer avec l'approche `class_weight`/`scale_pos_weight` actuelle.
 - **Feature engineering** : croisement ancienneté × canal, création d'un score composite d'insatisfaction, historique de hausses de prime cumulées.
 - **Analyse coût-bénéfice** : définir un seuil de décision optimal en fonction du coût réel d'une action de rétention vs. le coût de la perte d'un client.
-
-
----
-
-*Projet réalisé dans le cadre d'une simulation de problématique de résiliation sur un portefeuille assurantiel, à des fins d'apprentissage en Data Science / Machine Learning.*
